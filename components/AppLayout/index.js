@@ -1,17 +1,17 @@
-import styles, {globalStyles} from './styles'
+import styles, { globalStyles } from "./styles";
 
-export const AppLayout = ({children}) => {
-    return (
-        <>
-            <div>
-                <main>
-                    {children}
-                </main>
-            </div>
+export const AppLayout = ({ children }) => {
+  return (
+    <>
+      <div>
+        <main>{children}</main>
+      </div>
 
-            <style jsx>{styles}</style>
-            
-            <style jsx global>{globalStyles}</style>
-        </>
-    )
-}
+      <style jsx>{styles}</style>
+
+      <style jsx global>
+        {globalStyles}
+      </style>
+    </>
+  );
+};
