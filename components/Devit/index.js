@@ -1,6 +1,6 @@
 import Avatar from "../Avatar/Index"
 
-const Devit = ({ avatar, username, message, id }) => {
+const Devit = ({ avatar, userName, content, id, userId, createdAt }) => {
   return (
     <>
       <article key={id}>
@@ -8,14 +8,17 @@ const Devit = ({ avatar, username, message, id }) => {
           <Avatar src={avatar} alt={avatar} />
         </div>
         <section>
-          <strong>{username}</strong>
-          <p>{message}</p>
+          <header>
+            <strong>{userName}</strong>
+            <span>{createdAt}</span>
+          </header>
+          <p>{content}</p>
         </section>
       </article>
 
       <style jsx>{`
         article {
-          border-bottom: 2px solid #eaf7ff;
+          border-bottom: 1px solid #eee;
           display: flex;
           padding: 10px 15px;
         }

@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react"
 import { AppLayout } from "../../components/AppLayout"
 import Devit from "../../components/Devit"
+import { fetchLatestDevits } from "../../firebase/client"
+import { useUser } from "../../hooks/useUser"
 
 const HomePage = () => {
   const [timeline, setTimeline] = useState([])
 
+  const user = useUser()
+
   useEffect(() => {
-    fetch("http://localhost:3000/api/statuses/home_timeline")
-      .then((res) => res.json())
-      .then(setTimeline)
-  }, [])
+    user && fetchLatestDevits().then(setTimeline)
+
+    return () => setTimeline([])
+  }, [user])
 
   return (
     <div>
@@ -19,15 +23,19 @@ const HomePage = () => {
         </header>
 
         <section>
-          {timeline.map(({ id, username, avatar, message }) => (
-            <Devit
-              key={id}
-              username={username}
-              avatar={avatar}
-              message={message}
-              id={id}
-            />
-          ))}
+          {timeline.map(
+            ({ userId, id, userName, avatar, content, createdAt }) => (
+              <Devit
+                key={id}
+                avatar={avatar}
+                createdAt={createdAt}
+                id={id}
+                userName={userName}
+                content={content}
+                userId={userId}
+              />
+            )
+          )}
         </section>
 
         <nav></nav>
@@ -39,22 +47,22 @@ const HomePage = () => {
           position: sticky;
           height: 49px;
           top: 0;
-          border-bottom: 1px solid #ccc;
+          border-bottom: 1px solid #eee;
           width: 100%;
-        }
-
-        section {
-          padding-top: 49px;
+          background: #ffffffaa;
+          backdrop-filter: blur(5px);
         }
 
         h2 {
           font-size: 21px;
           font-weigh: 800;
+          padding-left: 15px;
         }
 
         nav {
+          background: #fff;
           bottom: 0;
-          border-bottom: 1px solid #ccc;
+          border-bottom: 1px solid #eee;
           height: 49px;
           position: sticky;
           width: 100%;
