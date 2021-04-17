@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { AppLayout } from "../../components/AppLayout"
 import Devit from "../../components/Devit"
 import { fetchLatestDevits } from "../../firebase/client"
 import { useUser } from "../../hooks/useUser"
@@ -23,57 +22,48 @@ const HomePage = () => {
 
   return (
     <div>
-      <AppLayout>
-        <Head>
-          <title>Inicio | Devter</title>
-        </Head>
-        <header>
-          <h2> Inicio</h2>
-        </header>
+      <Head>
+        <title>Inicio | Devter</title>
+      </Head>
+      <header>
+        <h2> Inicio</h2>
+      </header>
 
-        <section>
-          {timeline.map(
-            ({
-              userId,
-              id,
-              userName,
-              avatar,
-              content,
-              createdAt,
-              imageURL,
-            }) => (
-              <Devit
-                key={id}
-                avatar={avatar}
-                createdAt={createdAt}
-                id={id}
-                userName={userName}
-                content={content}
-                userId={userId}
-                imageURL={imageURL}
-              />
-            )
-          )}
-        </section>
+      <section>
+        {timeline.map(
+          ({ userId, id, userName, avatar, content, createdAt, imageURL }) => (
+            <Devit
+              key={id}
+              avatar={avatar}
+              createdAt={createdAt}
+              id={id}
+              userName={userName}
+              content={content}
+              userId={userId}
+              imageURL={imageURL}
+            />
+          )
+        )}
+      </section>
 
-        <nav>
-          <Link href="/home">
-            <a>
-              <Home width={32} height={32} stroke="#09f" />
-            </a>
-          </Link>
-          <Link href="/compose/tweet">
-            <a>
-              <Search width={32} height={32} stroke="#09f" />
-            </a>
-          </Link>
-          <Link href="/compose/tweet">
-            <a>
-              <Create width={32} height={32} stroke="#09f" />
-            </a>
-          </Link>
-        </nav>
-      </AppLayout>
+      <nav>
+        <Link href="/home">
+          <a>
+            <Home width={32} height={32} stroke="#09f" />
+          </a>
+        </Link>
+        <Link href="/compose/tweet">
+          <a>
+            <Search width={32} height={32} stroke="#09f" />
+          </a>
+        </Link>
+        <Link href="/compose/tweet">
+          <a>
+            <Create width={32} height={32} stroke="#09f" />
+          </a>
+        </Link>
+      </nav>
+
       <style jsx>{`
         header {
           display: flex;
