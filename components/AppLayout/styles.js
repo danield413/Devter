@@ -38,13 +38,13 @@ export default css`
     border-radius: 10px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     height: 100%;
-    positino: relative;
-    width: 100%;
     overflow-y: auto;
+    position: relative;
+    width: 100%;
   }
   @media (min-width: ${breakpoints.mobile}) {
     main {
-      height: 90vh;
+      height: 100vh;
       width: ${breakpoints.mobile};
     }
   }
