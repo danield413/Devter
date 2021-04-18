@@ -24,15 +24,17 @@ export const useTimeAgo = (timestamp) => {
   const [timeago, setTimeago] = useState(() => getDateDiffs(timestamp))
 
   useEffect(() => {
-    const timeout = setInterval(() => {
+    const interval = setInterval(() => {
       const newTimeAgo = getDateDiffs(timestamp)
       setTimeago(newTimeAgo)
     }, 5000)
 
-    return () => clearTimeout(timeout)
+    return () => clearInterval(interval)
   }, [timestamp])
 
   const rtf = new Intl.RelativeTimeFormat("es", { style: "short" })
+
   const { value, unit } = timeago
+
   return rtf.format(value, unit)
 }
